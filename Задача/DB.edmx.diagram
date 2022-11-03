@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87ffb22060b048e7b5d01d3a0618f2d3" Name="Diagram1" ZoomLevel="143">
+        <EntityTypeShape EntityType="Model.GradesRecord" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Students" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.StudentSubject" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Subjects" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Teachers" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TeacherSubject" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ZaverkiRecord" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__StudentRecor__ID__0E04126B" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__SubjectList__FN__56B3DD81" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__StudentTeac__SID__119F9925" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__ZaverkiRecor__ID__7AF13DF7" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__TeacherSubj__SID__00750D23" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__TeacherSubje__TN__0169315C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

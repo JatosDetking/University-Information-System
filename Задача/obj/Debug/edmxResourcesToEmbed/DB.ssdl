@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="GradesRecord">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Grade" Type="int" Nullable="false" />
+    <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="FN" />
+    </Key>
+    <Property Name="FN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentSubject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FN" Type="int" Nullable="false" />
+    <Property Name="SID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="SID" />
+    </Key>
+    <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="ExamDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="TN" />
+    </Key>
+    <Property Name="TN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeacherSubject">
+    <Key>
+      <PropertyRef Name="TSI" />
+    </Key>
+    <Property Name="TSI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TN" Type="int" Nullable="false" />
+    <Property Name="SID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ZaverkiRecord">
+    <Key>
+      <PropertyRef Name="ZID" />
+    </Key>
+    <Property Name="ZID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Zaverka" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__StudentRecor__ID__0E04126B">
+    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="1" />
+    <End Role="GradesRecord" Type="Self.GradesRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentSubject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GradesRecord">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentTeac__SID__119F9925">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="SID" />
+      </Principal>
+      <Dependent Role="StudentSubject">
+        <PropertyRef Name="SID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubjectList__FN__56B3DD81">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="FN" />
+      </Principal>
+      <Dependent Role="StudentSubject">
+        <PropertyRef Name="FN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeacherSubj__SID__00750D23">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="TeacherSubject" Type="Self.TeacherSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="SID" />
+      </Principal>
+      <Dependent Role="TeacherSubject">
+        <PropertyRef Name="SID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeacherSubje__TN__0169315C">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+    <End Role="TeacherSubject" Type="Self.TeacherSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="TN" />
+      </Principal>
+      <Dependent Role="TeacherSubject">
+        <PropertyRef Name="TN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ZaverkiRecor__ID__7AF13DF7">
+    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="1" />
+    <End Role="ZaverkiRecord" Type="Self.ZaverkiRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentSubject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ZaverkiRecord">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="GradesRecord" EntityType="Self.GradesRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentSubject" EntityType="Self.StudentSubject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeacherSubject" EntityType="Self.TeacherSubject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZaverkiRecord" EntityType="Self.ZaverkiRecord" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__StudentRecor__ID__0E04126B" Association="Self.FK__StudentRecor__ID__0E04126B">
+      <End Role="StudentSubject" EntitySet="StudentSubject" />
+      <End Role="GradesRecord" EntitySet="GradesRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentTeac__SID__119F9925" Association="Self.FK__StudentTeac__SID__119F9925">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="StudentSubject" EntitySet="StudentSubject" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubjectList__FN__56B3DD81" Association="Self.FK__SubjectList__FN__56B3DD81">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="StudentSubject" EntitySet="StudentSubject" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeacherSubj__SID__00750D23" Association="Self.FK__TeacherSubj__SID__00750D23">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="TeacherSubject" EntitySet="TeacherSubject" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeacherSubje__TN__0169315C" Association="Self.FK__TeacherSubje__TN__0169315C">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="TeacherSubject" EntitySet="TeacherSubject" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ZaverkiRecor__ID__7AF13DF7" Association="Self.FK__ZaverkiRecor__ID__7AF13DF7">
+      <End Role="StudentSubject" EntitySet="StudentSubject" />
+      <End Role="ZaverkiRecord" EntitySet="ZaverkiRecord" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,52 @@
+CREATE TABLE [dbo].[GradesRecord] (
+    [RID]   INT      IDENTITY (1, 1) NOT NULL,
+    [Grade] INT      NOT NULL,
+    [Type]  CHAR (1) NOT NULL,
+    [ID]    INT      NOT NULL,
+    PRIMARY KEY CLUSTERED ([RID] ASC),
+    FOREIGN KEY ([ID]) REFERENCES [dbo].[StudentSubject] ([ID])
+);
+CREATE TABLE [dbo].[Students] (
+    [FN]       INT          IDENTITY (1, 1) NOT NULL,
+    [Username] VARCHAR (50) NOT NULL,
+    [Password] VARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([FN] ASC)
+);
+CREATE TABLE [dbo].[StudentSubject] (
+    [ID]  INT IDENTITY (1, 1) NOT NULL,
+    [FN]  INT NOT NULL,
+    [SID] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    FOREIGN KEY ([SID]) REFERENCES [dbo].[Subjects] ([SID]),
+    FOREIGN KEY ([FN]) REFERENCES [dbo].[Students] ([FN])
+);
+CREATE TABLE [dbo].[Subjects] (
+    [SID]         INT          IDENTITY (1, 1) NOT NULL,
+    [SubjectName] VARCHAR (50) NOT NULL,
+    [Type]        CHAR (1)     NOT NULL,
+    [ExamDate]    DATETIME     NOT NULL,
+    PRIMARY KEY CLUSTERED ([SID] ASC)
+);
+CREATE TABLE [dbo].[Teachers] (
+    [TN]       INT          IDENTITY (1, 1) NOT NULL,
+    [Username] VARCHAR (50) NOT NULL,
+    [Password] VARCHAR (50) NOT NULL,
+    [Type]     CHAR (1)     NOT NULL,
+    PRIMARY KEY CLUSTERED ([TN] ASC)
+);
+CREATE TABLE [dbo].[TeacherSubject] (
+    [TSI] INT IDENTITY (1, 1) NOT NULL,
+    [TN]  INT NOT NULL,
+    [SID] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([TSI] ASC),
+    FOREIGN KEY ([SID]) REFERENCES [dbo].[Subjects] ([SID]),
+    FOREIGN KEY ([TN]) REFERENCES [dbo].[Teachers] ([TN])
+);
+CREATE TABLE [dbo].[ZaverkiRecord] (
+    [ZID]     INT          IDENTITY (1, 1) NOT NULL,
+    [Zaverka] VARCHAR (50) NOT NULL,
+    [Type]    CHAR (1)     NOT NULL,
+    [ID]      INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([ZID] ASC),
+    FOREIGN KEY ([ID]) REFERENCES [dbo].[StudentSubject] ([ID])
+);

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="ElectiveSubjects">
+      <EntityTypeMapping TypeName="Model.ElectiveSubjects">
+        <MappingFragment StoreEntitySet="ElectiveSubjects">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="subjectName" ColumnName="subjectName" />
+          <ScalarProperty Name="FN" ColumnName="FN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentList">
+      <EntityTypeMapping TypeName="Model.StudentList">
+        <MappingFragment StoreEntitySet="StudentList">
+          <ScalarProperty Name="FN" ColumnName="FN" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentRecord">
+      <EntityTypeMapping TypeName="Model.StudentRecord">
+        <MappingFragment StoreEntitySet="StudentRecord">
+          <ScalarProperty Name="RECID" ColumnName="RECID" />
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject">
+      <EntityTypeMapping TypeName="Model.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="subjectName" ColumnName="subjectName" />
+          <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectList">
+      <EntityTypeMapping TypeName="Model.SubjectList">
+        <MappingFragment StoreEntitySet="SubjectList">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="subjectName" ColumnName="subjectName" />
+          <ScalarProperty Name="FN" ColumnName="FN" />
+          <ScalarProperty Name="TN" ColumnName="TN" />
+          <ScalarProperty Name="Zaverki" ColumnName="Zaverki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeacherList">
+      <EntityTypeMapping TypeName="Model.TeacherList">
+        <MappingFragment StoreEntitySet="TeacherList">
+          <ScalarProperty Name="TN" ColumnName="TN" />
+          <ScalarProperty Name="subjectName" ColumnName="subjectName" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

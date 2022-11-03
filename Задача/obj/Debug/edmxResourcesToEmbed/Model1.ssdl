@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ElectiveSubjects">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="subjectName" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="FN" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentList">
+    <Key>
+      <PropertyRef Name="FN" />
+    </Key>
+    <Property Name="FN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentRecord">
+    <Key>
+      <PropertyRef Name="RECID" />
+    </Key>
+    <Property Name="RECID" Type="int" Nullable="false" />
+    <Property Name="grade" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="subjectName" />
+    </Key>
+    <Property Name="subjectName" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="ExamDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectList">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="subjectName" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="FN" Type="int" Nullable="false" />
+    <Property Name="TN" Type="int" Nullable="false" />
+    <Property Name="Zaverki" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeacherList">
+    <Key>
+      <PropertyRef Name="TN" />
+    </Key>
+    <Property Name="TN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subjectName" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="Username" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__ElectiveS__subje__47DBAE45">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="ElectiveSubjects" Type="Self.ElectiveSubjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subjectName" />
+      </Principal>
+      <Dependent Role="ElectiveSubjects">
+        <PropertyRef Name="subjectName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ElectiveSubj__FN__29221CFB">
+    <End Role="StudentList" Type="Self.StudentList" Multiplicity="1" />
+    <End Role="ElectiveSubjects" Type="Self.ElectiveSubjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentList">
+        <PropertyRef Name="FN" />
+      </Principal>
+      <Dependent Role="ElectiveSubjects">
+        <PropertyRef Name="FN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentRecor__ID__6E01572D">
+    <End Role="SubjectList" Type="Self.SubjectList" Multiplicity="1" />
+    <End Role="StudentRecord" Type="Self.StudentRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectList">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StudentRecord">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubjectLi__subje__01142BA1">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="SubjectList" Type="Self.SubjectList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subjectName" />
+      </Principal>
+      <Dependent Role="SubjectList">
+        <PropertyRef Name="subjectName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubjectList__FN__2A164134">
+    <End Role="StudentList" Type="Self.StudentList" Multiplicity="1" />
+    <End Role="SubjectList" Type="Self.SubjectList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentList">
+        <PropertyRef Name="FN" />
+      </Principal>
+      <Dependent Role="SubjectList">
+        <PropertyRef Name="FN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubjectList__TN__3D2915A8">
+    <End Role="TeacherList" Type="Self.TeacherList" Multiplicity="1" />
+    <End Role="SubjectList" Type="Self.SubjectList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeacherList">
+        <PropertyRef Name="TN" />
+      </Principal>
+      <Dependent Role="SubjectList">
+        <PropertyRef Name="TN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeacherLi__subje__4D5F7D71">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="TeacherList" Type="Self.TeacherList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subjectName" />
+      </Principal>
+      <Dependent Role="TeacherList">
+        <PropertyRef Name="subjectName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="ElectiveSubjects" EntityType="Self.ElectiveSubjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentList" EntityType="Self.StudentList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentRecord" EntityType="Self.StudentRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectList" EntityType="Self.SubjectList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeacherList" EntityType="Self.TeacherList" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ElectiveS__subje__47DBAE45" Association="Self.FK__ElectiveS__subje__47DBAE45">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="ElectiveSubjects" EntitySet="ElectiveSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ElectiveSubj__FN__29221CFB" Association="Self.FK__ElectiveSubj__FN__29221CFB">
+      <End Role="StudentList" EntitySet="StudentList" />
+      <End Role="ElectiveSubjects" EntitySet="ElectiveSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentRecor__ID__6E01572D" Association="Self.FK__StudentRecor__ID__6E01572D">
+      <End Role="SubjectList" EntitySet="SubjectList" />
+      <End Role="StudentRecord" EntitySet="StudentRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubjectLi__subje__01142BA1" Association="Self.FK__SubjectLi__subje__01142BA1">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="SubjectList" EntitySet="SubjectList" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubjectList__FN__2A164134" Association="Self.FK__SubjectList__FN__2A164134">
+      <End Role="StudentList" EntitySet="StudentList" />
+      <End Role="SubjectList" EntitySet="SubjectList" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubjectList__TN__3D2915A8" Association="Self.FK__SubjectList__TN__3D2915A8">
+      <End Role="TeacherList" EntitySet="TeacherList" />
+      <End Role="SubjectList" EntitySet="SubjectList" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeacherLi__subje__4D5F7D71" Association="Self.FK__TeacherLi__subje__4D5F7D71">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="TeacherList" EntitySet="TeacherList" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
